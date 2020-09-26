@@ -6,7 +6,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " plugins
 Plug 'morhetz/gruvbox'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
 Plug 'ddollar/nerdcommenter'
