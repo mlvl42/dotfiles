@@ -16,6 +16,7 @@ set $alt Mod1
 # is used in the bar {} block below.
 font pango:FiraMono 10
 
+for_window [class=".*"] border pixel 1
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -173,6 +174,7 @@ bindsym $mod+r mode "resize"
 exec_always --no-startup-id $HOME/.config/i3/polybar.sh
 
 exec --no-startup-id /usr/bin/compton --config /home/jed/.config/compton/compton.conf
+exec_always --no-startup-id /usr/bin/feh --bg-fill ~/.wallpaper.jpg
 
 bindsym Control+$alt+l exec "i3lock -c 282828"
 
