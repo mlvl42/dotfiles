@@ -61,10 +61,6 @@ if [ -n "$DISPLAY" ]; then
   xset b off
 fi
 
-GPG_TTY=$(tty)
-export GPG_TTY
-
-# pass completion suggested by @d4ndo (#362)
 export PATH=~/.local/bin:$PATH
 
 # virtualenvs
