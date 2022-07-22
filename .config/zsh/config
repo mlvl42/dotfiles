@@ -6,12 +6,30 @@
 ## Prompt theme extension ##
 
 # Virtualenv support
-
 function virtual_env_prompt () {
     REPLY=${VIRTUAL_ENV+(${VIRTUAL_ENV:t}) }
 }
 grml_theme_add_token  virtual-env -f virtual_env_prompt '%F{magenta}' '%f'
-zstyle ':prompt:grml:left:setup' items rc virtual-env change-root user at host path vcs percent
+
+# mephi support
+function mephi_env_prompt () {
+    REPLY=${MEPHI_PROJECT+[${MEPHI_PROJECT:t}] }
+}
+grml_theme_add_token  mephi-env -f mephi_env_prompt '%F{red}' '%f'
+
+# netns support
+function netns_env_prompt () {
+	NETNS_ENV="$(ip netns identify $$)"
+	if [[ ! -z $NETNS_ENV ]]; then
+    	REPLY=${NETNS_ENV+[${NETNS_ENV:t}] }
+	fi
+}
+grml_theme_add_token  netns-env -f netns_env_prompt '%F{green}' '%f'
+
+
+
+# prompt definition
+zstyle ':prompt:grml:left:setup' items rc netns-env mephi-env virtual-env change-root user at host path vcs percent
 
 # aliases
 alias vi=nvim
@@ -55,3 +73,5 @@ export PATH=~/.local/bin:$PATH
 # virtualenvs
 WORKON_HOME="~/.venvs"
 VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3
+
+# vim:ft=sh
