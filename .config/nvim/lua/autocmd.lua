@@ -1,26 +1,44 @@
---- from https://github.com/norcalli/nvim_utils
-function nvim_create_augroups(definitions)
-	for group_name, definition in pairs(definitions) do
-		vim.api.nvim_command('augroup '..group_name)
-		vim.api.nvim_command('autocmd!')
+local function nvim_create_augroups(groups)
+	for group_name, definition in pairs(groups) do
+		vim.api.nvim_create_augroup(group_name, { clear = true })
 		for _, def in ipairs(definition) do
-			local command = table.concat(vim.tbl_flatten{'autocmd', def}, ' ')
-			vim.api.nvim_command(command)
+			local opts = def.opts
+			opts.group = group_name
+			vim.api.nvim_create_autocmd(def.event, opts)
 		end
-		vim.api.nvim_command('augroup END')
 	end
 end
 
-local autocmds = {
+local augroups = {
 	packer = {
-		{ "BufWritePost", "plugins.lua", "PackerCompile" };
+		{
+			event = "BufWritePost",
+			opts = {
+				pattern = "plugins.lua",
+				command = "PackerCompile"
+			}
+		};
 	};
 	restore_cursor = {
-		{ 'BufRead', '*', [[call setpos(".", getpos("'\""))]] };
+		{
+			event = 'BufRead',
+			opts = {
+				pattern = '*',
+				command = [[call setpos(".", getpos("'\""))]]
+			}
+		};
 	};
 	autoformat = {
-		{ 'BufWritePre', '*.rs', [[lua vim.lsp.buf.formatting_sync(nil, 1000)]] };
+		{
+			event = 'BufWritePre',
+			opts = {
+				pattern = { '*.rs', '*.lua' },
+				callback = function()
+					vim.lsp.buf.formatting_sync(nil, 1000)
+				end
+			}
+		};
 	};
 }
 
-nvim_create_augroups(autocmds)
+nvim_create_augroups(augroups)
