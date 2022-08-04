@@ -1,5 +1,3 @@
-local utils = require('utils')
-
 return require('packer').startup(function()
 	-- packer can manage itself as an optional plugin
 	use { 'wbthomason/packer.nvim', opt = true }
@@ -68,7 +66,7 @@ return require('packer').startup(function()
 	}
 
 	-- <3
-	use {'junegunn/fzf.vim'}
+	use { 'junegunn/fzf.vim' }
 	vim.g.fzf_layout = { down = '40%' }
 
 	-- LSP and completion
@@ -91,23 +89,24 @@ return require('packer').startup(function()
 		requires = {
 			'kyazdani42/nvim-web-devicons', -- optional, for file icon
 		},
-		config = function() require'nvim-tree'.setup {
-			-- auto_close = true,
-			view = {
-				mappings = {
-					list = {
-						{ key = {"<CR>", "o", "l"}, action = "edit", mode = "n" },
+		config = function() require 'nvim-tree'.setup {
+				-- auto_close = true,
+				view = {
+					mappings = {
+						list = {
+							{ key = { "<CR>", "o", "l" }, action = "edit", mode = "n" },
+						}
 					}
 				}
 			}
-		} end
+		end
 	}
 
 	use {
-	  'lewis6991/gitsigns.nvim',
-	  config = function()
-		require('gitsigns').setup()
-	  end
+		'lewis6991/gitsigns.nvim',
+		config = function()
+			require('gitsigns').setup()
+		end
 	}
 
 end)

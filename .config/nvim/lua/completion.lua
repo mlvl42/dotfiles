@@ -1,6 +1,7 @@
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require('cmp')
 
+---@diagnostic disable:need-check-nil
 cmp.setup({
 	-- completion = {
 	--     completeopt = 'menu,menuone,noinsert'
