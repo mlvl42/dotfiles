@@ -69,6 +69,14 @@ nvim_lsp.rust_analyzer.setup {
 	}
 }
 
+nvim_lsp.pyright.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150,
+	}
+}
+
 -- zk
 require("zk").setup({
 	-- can be "telescope", "fzf" or "select" (`vim.ui.select`)
