@@ -60,3 +60,7 @@ utils.map("n", "<Leader><Tab>", ":NvimTreeToggle<CR>")
 -- diagnostics
 utils.map("n", "<A-k>", ":lua vim.diagnostic.goto_prev()<CR>")
 utils.map("n", "<A-j>", ":lua vim.diagnostic.goto_next()<CR>")
+
+-- git move hunk
+utils.map("n", "<A-n>", ":Gitsigns next_hunk<CR>")
+utils.map("n", "<A-p>", ":Gitsigns prev_hunk<CR>")

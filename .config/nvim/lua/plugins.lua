@@ -29,6 +29,8 @@ return require('packer').startup(function()
 		}
 	}
 
+	use { 'nvim-lua/plenary.nvim' }
+
 	-- treesitter
 	use {
 		'nvim-treesitter/nvim-treesitter',
@@ -72,10 +74,13 @@ return require('packer').startup(function()
 	-- LSP and completion
 	use { 'neovim/nvim-lspconfig' }
 	use { 'hrsh7th/nvim-cmp' }
+	use { 'jose-elias-alvarez/null-ls.nvim' }
 	use { 'hrsh7th/cmp-nvim-lsp' }
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-path' }
 	use { 'hrsh7th/cmp-cmdline' }
+	use { 'L3MON4D3/LuaSnip' }
+	use { 'saadparwaiz1/cmp_luasnip' }
 
 	-- nerdcommenter
 	use { 'ddollar/nerdcommenter' }
@@ -108,5 +113,6 @@ return require('packer').startup(function()
 			require('gitsigns').setup()
 		end
 	}
+
 
 end)

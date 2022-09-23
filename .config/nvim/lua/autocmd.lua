@@ -1,3 +1,5 @@
+local utils = require('utils')
+
 local function nvim_create_augroups(groups)
 	for group_name, definition in pairs(groups) do
 		vim.api.nvim_create_augroup(group_name, { clear = true })

@@ -79,6 +79,18 @@ nvim_lsp.pyright.setup {
 	}
 }
 
+-- typescript
+nvim_lsp.tsserver.setup {
+	capabilities = capabilities,
+	on_attach = function(client, bufnr)
+		client.resolved_capabilities.document_formatting = false
+		on_attach(client, bufnr)
+	end,
+	flags = {
+		debounce_text_changes = 150,
+	}
+}
+
 -- lua
 nvim_lsp.sumneko_lua.setup {
 	capabilities = capabilities,
@@ -94,7 +106,7 @@ nvim_lsp.sumneko_lua.setup {
 			},
 			diagnostics = {
 				-- Get the language server to recognize the `vim` global
-				globals = { 'vim' },
+				globals = { 'vim', 'use' },
 			},
 			workspace = {
 				-- Make the server aware of Neovim runtime files
@@ -129,3 +141,38 @@ require("zk").setup({
 		},
 	},
 })
+
+nvim_lsp.vuels.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150,
+	}
+})
+
+
+-- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+-- require("null-ls").setup({
+--     capabilities = capabilities,
+--     flags = {
+--         debounce_text_changes = 150,
+--     },
+--     sources = {
+--         require("null-ls").builtins.formatting.prettier,
+--     },
+
+--     -- you can reuse a shared lspconfig on_attach callback here
+--     on_attach = function(client, bufnr)
+--         if client.supports_method("textDocument/formatting") then
+--             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+--             vim.api.nvim_create_autocmd("BufWritePre", {
+--                 group = augroup,
+--                 buffer = bufnr,
+--                 callback = function()
+--                     -- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+--                     vim.lsp.buf.formatting_sync()
+--                 end,
+--             })
+--         end
+--     end,
+-- })
