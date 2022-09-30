@@ -29,7 +29,7 @@ font-2 = "Noto Color Emoji:scale=10;"
 
 modules-left = date i3 xwindow
 modules-center =
-modules-right = alsa eth1 filesystem cpu memory
+modules-right = pulseaudio eth1 filesystem cpu memory
 
 tray-position = right
 tray-padding = 2
@@ -42,21 +42,28 @@ wm-restack = i3
 [global/wm]
 margin-top = 0
 
-[module/alsa]
-type = internal/alsa
+[module/pulseaudio]
+type = internal/pulseaudio
 
-; Soundcard to be used
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+; sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
 format-volume = <ramp-volume> <label-volume>
-format-volume-underline = #427b58
-format-muted-underline = #427b58
 label-muted = 🔇 muted
-label-muted-foreground = #66
+label-muted-foreground = #666
 ramp-volume-0 = 🔈
 ramp-volume-1 = 🔉
 ramp-volume-2 = 🔊
+; Right and Middle click
+click-right = pavucontrol
 
 [module/xwindow]
 type = internal/xwindow
