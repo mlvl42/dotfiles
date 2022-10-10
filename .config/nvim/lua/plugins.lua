@@ -65,6 +65,7 @@ return require('packer').startup(function()
 			-- Instead of true it can also be a list of languages
 			additional_vim_regex_highlighting = false,
 		},
+		ignore_install = { "phpdoc" },
 	}
 
 	-- <3

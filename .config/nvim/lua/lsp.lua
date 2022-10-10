@@ -83,7 +83,7 @@ nvim_lsp.pyright.setup {
 nvim_lsp.tsserver.setup {
 	capabilities = capabilities,
 	on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = false
+		client.server_capabilities.document_formatting = false
 		on_attach(client, bufnr)
 	end,
 	flags = {
