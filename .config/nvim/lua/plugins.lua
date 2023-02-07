@@ -26,6 +26,14 @@ return require('packer').startup(function()
 			theme = 'gruvbox-material',
 			component_separators = { left = '>', right = '<' },
 			section_separators = { left = '', right = '' },
+		},
+		sections = {
+			lualine_a = { 'mode' },
+			lualine_b = { 'branch', 'diff', 'diagnostics' },
+			lualine_c = { { 'filename', path = 1 } },
+			lualine_x = { 'encoding', 'fileformat', 'filetype' },
+			lualine_y = { 'progress' },
+			lualine_z = { 'location' }
 		}
 	}
 
@@ -80,7 +88,14 @@ return require('packer').startup(function()
 	use { 'hrsh7th/cmp-buffer' }
 	use { 'hrsh7th/cmp-path' }
 	use { 'hrsh7th/cmp-cmdline' }
-	use { 'L3MON4D3/LuaSnip' }
+	use({
+		"L3MON4D3/LuaSnip",
+		-- follow latest release.
+		tag = "v<CurrentMajor>.*",
+		-- install jsregexp (optional!:).
+		run = "make install_jsregexp"
+	})
+
 	use { 'saadparwaiz1/cmp_luasnip' }
 
 	-- nerdcommenter
@@ -114,6 +129,17 @@ return require('packer').startup(function()
 			require('gitsigns').setup()
 		end
 	}
+
+	-- diffview
+	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
+	require('diffview').setup({
+		keymaps = {
+			view = {
+				-- Disable the default mapping for <tab>:
+				["<tab>"] = false,
+			}
+		}
+	})
 
 
 end)
