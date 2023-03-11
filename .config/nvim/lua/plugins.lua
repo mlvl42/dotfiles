@@ -105,10 +105,12 @@ return require('packer').startup(function()
 	use { 'mickael-menu/zk-nvim' }
 
 	-- tree
+	vim.g.loaded_netrw = 1
+	vim.g.loaded_netrwPlugin = 1
 	use {
-		'kyazdani42/nvim-tree.lua',
+		'nvim-tree/nvim-tree.lua',
 		requires = {
-			'kyazdani42/nvim-web-devicons', -- optional, for file icon
+			'nvim-tree/nvim-web-devicons', -- optional, for file icon
 		},
 		config = function() require 'nvim-tree'.setup {
 				-- auto_close = true,

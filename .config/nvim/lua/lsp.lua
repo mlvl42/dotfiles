@@ -31,7 +31,6 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 	--buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
 	--buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -53,7 +52,7 @@ nvim_lsp.rust_analyzer.setup {
 		debounce_text_changes = 150,
 	},
 	settings = {
-		["rust-analyzer"] = {
+			["rust-analyzer"] = {
 			diagnostics = {
 				disabled = { "unresolved-import" }
 			},
@@ -92,7 +91,7 @@ nvim_lsp.tsserver.setup {
 }
 
 -- lua
-nvim_lsp.sumneko_lua.setup {
+nvim_lsp.lua_ls.setup {
 	capabilities = capabilities,
 	on_attach = on_attach,
 	flags = {
@@ -126,7 +125,6 @@ require("zk").setup({
 	-- can be "telescope", "fzf" or "select" (`vim.ui.select`)
 	-- it's recommended to use "telescope" or "fzf"
 	picker = "fzf",
-
 	lsp = {
 		-- `config` is passed to `vim.lsp.start_client(config)`
 		config = {
@@ -134,7 +132,6 @@ require("zk").setup({
 			name = "zk",
 			on_attach = on_attach
 		},
-
 		-- automatically attach buffers in a zk notebook that match the given filetypes
 		auto_attach = {
 			enabled = true,
