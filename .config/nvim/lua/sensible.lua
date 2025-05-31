@@ -16,6 +16,9 @@ utils.opt('w', 'colorcolumn', '80')
 utils.opt('w', 'number', true)
 utils.opt('o', 'termguicolors', true)
 vim.g.gruvbox_material_background = 'dark'
+vim.g.loaded_netrwplugin = 1
+vim.opt.termguicolors = true
+
 cmd 'set mouse='
 
 -- relative number in insert mode
