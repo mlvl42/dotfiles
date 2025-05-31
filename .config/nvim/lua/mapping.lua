@@ -55,7 +55,7 @@ utils.map("n", "<Leader>zl", "<cmd>ZkLinks<CR>")
 utils.map("n", "<Leader>zt", "<cmd>ZkTags<CR>")
 
 -- tree
-utils.map("n", "<Leader><Tab>", ":NvimTreeToggle<CR>")
+utils.map("n", "<Leader><Tab>", ":Neotree toggle<CR>")
 
 -- diagnostics
 utils.map("n", "<A-k>", ":lua vim.diagnostic.goto_prev()<CR>")
