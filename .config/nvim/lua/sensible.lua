@@ -46,4 +46,7 @@ cmd 'noreabbrev wQ wq'
 cmd 'noreabbrev WQ wq'
 cmd 'noreabbrev W w'
 cmd 'noreabbrev Q q'
+cmd 'noreabbrev Qa qa'
+cmd 'noreabbrev Qa! qa!'
 cmd 'noreabbrev Qall qall'
+cmd "autocmd FileType glsl let &l:commentstring='// %s'"

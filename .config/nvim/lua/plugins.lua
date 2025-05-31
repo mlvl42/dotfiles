@@ -100,30 +100,32 @@ return require('packer').startup(function()
 
 	-- nerdcommenter
 	use { 'ddollar/nerdcommenter' }
-
-	-- zettelkasten
-	use { 'mickael-menu/zk-nvim' }
+	vim.cmd [[let g:NERDCustomDelimiters = { 'wgsl': { 'left': '//' } }]]
 
 	-- tree
-	vim.g.loaded_netrw = 1
-	vim.g.loaded_netrwPlugin = 1
-	use {
-		'nvim-tree/nvim-tree.lua',
-		requires = {
-			'nvim-tree/nvim-web-devicons', -- optional, for file icon
-		},
-		config = function() require 'nvim-tree'.setup {
-				-- auto_close = true,
-				view = {
-					mappings = {
-						list = {
-							{ key = { "<CR>", "o", "l" }, action = "edit", mode = "n" },
-						}
-					}
-				}
-			}
-		end
-	}
+	-- use { 'nvim-tree/nvim-web-devicons' }
+	-- disable netrw at the very start of your init.lua (strongly advised)
+	-- vim.g.loaded_netrw = 0
+	vim.g.loaded_netrwplugin = 1
+
+	-- set termguicolors to enable highlight groups
+	vim.opt.termguicolors = true
+
+	-- empty setup using defaults
+	-- use  { "nvim-tree/nvim-tree.lua" }
+	-- require("nvim-tree").setup({
+	--     on_attach = function ()
+	--         local api = require('nvim-tree.api')
+	--         local function opts(desc)
+	--             return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+	--         end
+
+	--           api.config.mappings.default_on_attach(bufnr)
+
+
+	--         -- vim.keymap.set('n', 'l', api.node.open.edit)
+	--     end
+	-- })
 
 	use {
 		'lewis6991/gitsigns.nvim',
@@ -132,16 +134,10 @@ return require('packer').startup(function()
 		end
 	}
 
-	-- diffview
-	use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
-	require('diffview').setup({
-		keymaps = {
-			view = {
-				-- Disable the default mapping for <tab>:
-				["<tab>"] = false,
-			}
-		}
-	})
+	use { 'DingDean/wgsl.vim' }
 
-
+	use {
+		'nmac427/guess-indent.nvim',
+		config = function() require('guess-indent').setup {} end,
+	}
 end)

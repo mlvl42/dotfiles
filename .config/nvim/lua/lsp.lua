@@ -52,7 +52,7 @@ nvim_lsp.rust_analyzer.setup {
 		debounce_text_changes = 150,
 	},
 	settings = {
-			["rust-analyzer"] = {
+		["rust-analyzer"] = {
 			diagnostics = {
 				disabled = { "unresolved-import" }
 			},
@@ -79,16 +79,16 @@ nvim_lsp.pyright.setup {
 }
 
 -- typescript
-nvim_lsp.tsserver.setup {
-	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		client.server_capabilities.document_formatting = false
-		on_attach(client, bufnr)
-	end,
-	flags = {
-		debounce_text_changes = 150,
-	}
-}
+-- nvim_lsp.tsserver.setup {
+--     capabilities = capabilities,
+--     on_attach = function(client, bufnr)
+--         client.server_capabilities.document_formatting = false
+--         on_attach(client, bufnr)
+--     end,
+--     flags = {
+--         debounce_text_changes = 150,
+--     }
+-- }
 
 -- lua
 nvim_lsp.lua_ls.setup {
@@ -120,26 +120,6 @@ nvim_lsp.lua_ls.setup {
 	},
 }
 
--- zk
-require("zk").setup({
-	-- can be "telescope", "fzf" or "select" (`vim.ui.select`)
-	-- it's recommended to use "telescope" or "fzf"
-	picker = "fzf",
-	lsp = {
-		-- `config` is passed to `vim.lsp.start_client(config)`
-		config = {
-			cmd = { "zk", "lsp" },
-			name = "zk",
-			on_attach = on_attach
-		},
-		-- automatically attach buffers in a zk notebook that match the given filetypes
-		auto_attach = {
-			enabled = true,
-			filetypes = { "markdown" },
-		},
-	},
-})
-
 nvim_lsp.vuels.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
@@ -148,6 +128,14 @@ nvim_lsp.vuels.setup({
 	}
 })
 
+-- wgsl
+nvim_lsp.wgsl_analyzer.setup {
+	capabilities = capabilities,
+	on_attach = on_attach,
+	flags = {
+		debounce_text_changes = 150,
+	}
+}
 
 -- local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- require("null-ls").setup({
